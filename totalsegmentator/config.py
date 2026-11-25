@@ -63,7 +63,9 @@ def setup_totalseg(totalseg_id=None):
             totalseg_id = "totalseg_" + ''.join(random.Random().choices(string.ascii_uppercase + string.digits, k=8))
         config = {
             "totalseg_id": totalseg_id,
-            "send_usage_stats": True,
+            # Seldinger fork: no usage statistics unless the user turns them on. Lumen runs this
+            # on a user's own scans and promises that nothing leaves the machine.
+            "send_usage_stats": False,
             "prediction_counter": 0
         }
         with open(totalseg_config_file, "w") as f:
